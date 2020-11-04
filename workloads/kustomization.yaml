@@ -1,0 +1,14 @@
+---
+resources:
+  - podinfo-dep.yaml
+  - podinfo-hpa.yaml
+  - podinfo-svc.yaml
+
+
+commonLabels:
+  app: podinfo
+
+images:
+- name: stefanprodan/podinfo
+  newTag: 3.1.5
+...
