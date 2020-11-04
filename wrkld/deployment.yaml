@@ -1,0 +1,46 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: icebreaker
+  namespace: default
+  annotations:
+    fluxcd.io/tag.icebreaker: regex:^v\d+\.\d+\.\d+$
+    fluxcd.io/automated: "false"
+  labels:
+    app: icebreaker
+    release: icebreaker
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: icebreaker
+      release: icebreaker
+  template:
+    metadata:
+      annotations:
+        splunk.fluentbit.io: "true"
+        splunk.fluentbit.io/index: "icebreaker"
+      labels:
+        app: icebreaker
+        release: icebreaker
+    spec:
+      containers:
+      - name: icebreaker
+        image: jstone28/icebreaker:latest
+        imagePullPolicy: IfNotPresent
+        ports:
+        - name: http
+          containerPort: 4000
+          protocol: TCP
+        envFrom:
+        - configMapRef:
+            name: icebreaker-configmap
+        resources:
+          limits:
+            cpu: "0.5"
+            memory: 500Mi
+          requests:
+            cpu: "0.5"
+            memory: 500Mi
+...

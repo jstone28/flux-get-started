@@ -1,0 +1,18 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: icebreaker
+  namespace: default
+  labels:
+    app: icebreaker
+    release: icebreaker
+spec:
+  ports:
+  - port: 4000
+    protocol: TCP
+    name: http
+  selector:
+    app: icebreaker
+    release: icebreaker
+...

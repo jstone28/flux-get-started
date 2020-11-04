@@ -1,0 +1,17 @@
+---
+resources:
+  - deployment.yaml
+  - service.yaml
+  - configmap.yaml
+  - ingress.yaml
+  - ic-app.yaml
+  - namespace.yaml
+
+commonLabels:
+  app: icebreaker
+  release: icebreaker
+
+images:
+- name: docker-repo.vpc.locusdev.net/invitae-internal/jstone28/icebreaker
+  newTag: develop-v0.0.1
+...
