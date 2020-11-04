@@ -27,7 +27,7 @@ spec:
     spec:
       containers:
       - name: icebreaker
-        image: docker-repo.vpc.locusdev.net/invitae-internal/jstone28/icebreaker:develop-v0.0.1
+        image: jstone28/icebreaker:develop-v0.0.1
         imagePullPolicy: IfNotPresent
         ports:
         - name: http
